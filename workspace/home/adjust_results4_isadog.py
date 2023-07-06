@@ -78,7 +78,7 @@ def adjust_results4_isadog(results_dic, dogfile):
         
         while line != "":
             # Process line by striping newline from line
-            line.strip("\n")
+            line = line.strip("\n")
             
             # adds dogname(line) to dogsnames_dic if it doesn't already exist 
             # in the dogsnames_dic dictionary
@@ -87,15 +87,18 @@ def adjust_results4_isadog(results_dic, dogfile):
              
             line = infile.readline()
             
-            for key in results_dic:
+        for key in results_dic:
 
                 # Pet Image Label IS of Dog 
                 if results_dic[key][0] in dognames_dic:
 
+                    print(results_dic[key][0])
                     # Classifier Label IS image of Dog 
                     # appends (1, 1) because both labels are dogs
                     if results_dic[key][1] in dognames_dic:
                         results_dic[key].extend((1, 1))
+
+                        print(results_dic[key])
 
                                            
                     # Classifier Label IS NOT image of dog 
@@ -115,6 +118,7 @@ def adjust_results4_isadog(results_dic, dogfile):
                     # appends (0, 0) because both labels aren't dogs
                     else:
                         results_dic[key].extend((0, 0))
+
 
 
 
